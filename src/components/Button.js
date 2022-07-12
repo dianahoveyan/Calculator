@@ -55,7 +55,7 @@ const Button = ({value}) => {
     }
 
     const equalsClick = () => {
-        if(calc.res && calc.num){
+        if(calc.res && calc.num) {
             const math = (a, b, sign) => {
                 const result = {
                     "+": (a, b) => a + b,
@@ -63,16 +63,17 @@ const Button = ({value}) => {
                     "x": (a, b) => a * b,
                     "/": (a, b) => a / b,
                 }
-               return  result[sign](a,b)
+                return result[sign](a, b)
             }
             setCalc({
-                res: math(calc.res, calc.num,calc.sign),
+                res: math(calc.res, calc.num, calc.sign),
                 sign: "",
                 num: 0
             })
         }
-
     }
+
+
 
     const percentsClick = () => {
         setCalc({
