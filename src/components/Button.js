@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {CalcContext} from "../context/CalcContext";
 
 
@@ -16,6 +16,23 @@ const getStyleName = btn => {
 
 const Button = ({value}) => {
     const {calc, setCalc} = useContext(CalcContext)
+
+    useEffect(() => {
+        document.addEventListener("keydown", detectKeyDown, true)
+
+        return () => {
+            document.removeEventListener("keydown", detectKeyDown, true)
+        }
+    }, [calc])
+
+    const detectKeyDown = (e) => {
+        //console.log("Clicked Key", e.keyCode)
+        e.preventDefault()
+        e.stopPropagation()
+        if(e.keyCode === value.toString().charCodeAt()){
+            handleBtnClick()
+        }
+    }
 
     const commaClick = () => {
         setCalc({
@@ -72,7 +89,6 @@ const Button = ({value}) => {
             })
         }
     }
-
 
 
     const percentsClick = () => {
