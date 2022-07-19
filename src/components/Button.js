@@ -89,7 +89,6 @@ const Button = ({ value }) => {
         }
     }
 
-
     const percentsClick = () => {
         setCalc({
             num: (calc.num / 100),
@@ -106,28 +105,24 @@ const Button = ({ value }) => {
         })
     }
 
-
-
     const handleBtnClick = () => {
-        const results = {
-            ".": commaClick,
-            "C": resetClick,
-            "/": signClick,
-            "x": signClick,
-            "-": signClick,
-            "+": signClick,
-            "=": equalsClick,
-            "%": percentsClick,
-            "+-": invertClick
-        }
+     const results = {
+         ".": commaClick,
+         "C": resetClick,
+         "/": signClick,
+         "x": signClick,
+         "-": signClick,
+         "+": signClick,
+         "=": equalsClick,
+         "%": percentsClick,
+         "+-": invertClick
+         }
         if (results[value]) {
             return results[value]()
         } else {
             return handleClickButton()
         }
-
     }
-
 
     return (
         <button onClick={handleBtnClick} className={`${getStyleName(value)} button`}>{value}</button>
