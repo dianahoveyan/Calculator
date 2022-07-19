@@ -1,6 +1,5 @@
-import React, {useContext, useEffect} from "react";
-import {CalcContext} from "../context/CalcContext";
-
+import React, { useContext, useEffect } from "react";
+import { CalcContext } from "../context/CalcContext";
 
 const getStyleName = btn => {
 
@@ -14,8 +13,8 @@ const getStyleName = btn => {
     return className[btn]
 }
 
-const Button = ({value}) => {
-    const {calc, setCalc} = useContext(CalcContext)
+const Button = ({ value }) => {
+    const { calc, setCalc } = useContext(CalcContext)
 
     useEffect(() => {
         document.addEventListener("keydown", detectKeyDown, true)
@@ -29,7 +28,7 @@ const Button = ({value}) => {
         //console.log("Clicked Key", e.keyCode)
         e.preventDefault()
         e.stopPropagation()
-        if(e.keyCode === value.toString().charCodeAt()){
+        if (e.keyCode === value.toString().charCodeAt()) {
             handleBtnClick()
         }
     }
@@ -43,23 +42,23 @@ const Button = ({value}) => {
     }
 
     const resetClick = () => {
-        setCalc({sign : "", num: 0, res: 0})
+        setCalc({ sign: "", num: 0, res: 0 })
     }
 
     const handleClickButton = () => {
-      const numberString = value.toString()
+        const numberString = value.toString()
 
         let numberValue;
-      if(numberString === "0" && calc.num === 0) {
-          numberValue = '0'
-      }else {
-          numberValue = Number(calc.num + numberString)
-      }
-      setCalc({
-          ...calc,
-          num: numberValue
+        if (numberString === "0" && calc.num === 0) {
+            numberValue = '0'
+        } else {
+            numberValue = Number(calc.num + numberString)
+        }
+        setCalc({
+            ...calc,
+            num: numberValue
 
-      })
+        })
     }
 
     const signClick = () => {
@@ -72,7 +71,7 @@ const Button = ({value}) => {
     }
 
     const equalsClick = () => {
-        if(calc.res && calc.num) {
+        if (calc.res && calc.num) {
             const math = (a, b, sign) => {
                 const result = {
                     "+": (a, b) => a + b,
@@ -121,16 +120,16 @@ const Button = ({value}) => {
             "%": percentsClick,
             "+-": invertClick
         }
-        if(results[value]){
+        if (results[value]) {
             return results[value]()
-        }else {
+        } else {
             return handleClickButton()
         }
 
     }
 
 
-    return(
+    return (
         <button onClick={handleBtnClick} className={`${getStyleName(value)} button`}>{value}</button>
     )
 
