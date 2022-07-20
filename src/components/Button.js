@@ -25,11 +25,40 @@ const Button = ({ value }) => {
     }, [calc])
 
     const detectKeyDown = (e) => {
-        //console.log("Clicked Key", e.keyCode)
+        console.log("Clicked Key", e.keyCode)
         e.preventDefault()
         e.stopPropagation()
         if (e.keyCode === value.toString().charCodeAt()) {
             handleBtnClick()
+        }
+        //-
+        if(e.key === "-"){
+            signClick()
+        }
+        // +
+        if(e.key === "+"){
+            signClick()
+        }
+        // /
+        if(e.key === "/"){
+            signClick()
+        }
+        //*
+        if(e.key === "*"){
+            signClick()
+        }
+        //=
+        if(e.key === "="){
+            equalsClick()
+        }
+        // .
+        if(e.key === "."){
+            alert('ytytyt')
+            commaClick()
+        }
+        // C
+        if(e.key === "Backspace"){
+            resetClick()
         }
     }
 

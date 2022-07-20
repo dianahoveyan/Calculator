@@ -3,6 +3,7 @@ import Screen from "./components/Screen";
 import ButtonBox from "./components/ButtonBox";
 import Button from "./components/Button";
 import CalcProvider from "./context/CalcContext";
+import {useEffect} from "react";
 
 const btnValues = [
     ["C", "+-", "%", "/"],
@@ -11,8 +12,15 @@ const btnValues = [
     [1, 2, 3, "+"],
     [0, ".", "="]
 ];
+const API_BASE = "http://localhost:9090"
+
 
 function App() {
+    useEffect(() => {
+        fetch(`${API_BASE}/url`)
+            .then(response => response.json())
+            .then(data => console.log(data));
+    })
     return (
     <CalcProvider>
         <Wrapper>
