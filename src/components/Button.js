@@ -54,7 +54,6 @@ const Button = ({value}) => {
         }
         // .
         if(e.key === "."){
-            alert('ytytyt')
             commaClick()
         }
         // C
@@ -136,7 +135,16 @@ const Button = ({value}) => {
         })
     }
 
-
+    const saveClick = () => {
+        const num = {value: calc.num || calc.res};
+        fetch('http://localhost:9090/saved',{
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(num)
+        }).then(() => {
+            console.log("new data added")
+        })
+    }
 
     const handleBtnClick = () => {
         const results = {
@@ -148,7 +156,8 @@ const Button = ({value}) => {
             "+": signClick,
             "=": equalsClick,
             "%": percentsClick,
-            "+-": invertClick
+            "+-": invertClick,
+            "Save": saveClick
         }
         if(results[value]){
             return results[value]()
